@@ -43,18 +43,7 @@ if show_raw_data:
     st.subheader('Raw Data')
     st.write(data.tail())
     
-#Creating a plot for Raw Data
-#Two lines, one is opening price, another is closing price
-#Adding a Rangeslider so you can zoom the graph in and out
-def plot_raw_data():
-	fig = go.Figure()
-	fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
-	fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
-	fig.layout.update(title_text='Time Series Stock Data with Rangeslider', xaxis_rangeslider_visible=True)
-	st.plotly_chart(fig)
 
-plot_raw_data()    
-    
 #Here we will do a short statistical analysis of the stock
 st.subheader(f"Statistical values for {selected_stock}:")
 #Calculate by how many times the stock has increased in price from its historical minimum to historical maximum
@@ -82,7 +71,22 @@ trend_data = df1.\
 
 #Showing the dataframe
 st.write(trend_data)      
-        
+
+#Creating a plot for Raw Data
+#Two lines, one is opening price, another is closing price
+#Adding a Rangeslider so you can zoom the graph in and out
+def plot_raw_data():
+	fig = go.Figure()
+	fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
+	fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
+	fig.layout.update(title_text='Time Series Stock Data with Rangeslider', xaxis_rangeslider_visible=True)
+	st.plotly_chart(fig)
+
+plot_raw_data()    
+    
+
+
+
 # Using Prophet to forecast stock price
 #Creating dataframe with xs and ys Prophet will use for prediction
 df_train = data[['Date','Close']]
