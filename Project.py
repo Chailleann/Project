@@ -37,13 +37,13 @@ data = load_data(selected_stock)
 data_load_state.text('Loading data is completed')
 
 #This creates a checkbox on the right
-show_raw_data= st.sidebar.checkbox('Show Raw Data')
+show_raw_data= st.sidebar.checkbox('Show Stock Data Table')
 #If you tick the checkbox, you'll see the raw data
 if show_raw_data:
-    st.subheader('Raw Data')
+    st.subheader('Stock Data Table')
     st.write(data.tail())
     
-#Creating a plot for Raw Data
+#Creating a plot for Stock Data
 #Two lines, one is opening price, another is closing price
 #Adding a Rangeslider so you can zoom the graph in and out
 def plot_raw_data():
@@ -95,11 +95,11 @@ future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
 #This creates a checkbox on the right
-show_forecasted_data = st.sidebar.checkbox('Show Forecasted Data')
+show_forecasted_data = st.sidebar.checkbox('Show Forecasted Data Table')
 
 #If you tick the checkbox, you'll see the forecasted data
 if show_forecasted_data:
-    st.subheader('Forecasted data')
+    st.subheader('Forecasted Data Table')
     st.write(forecast.tail())
 
 #Creating a title for the plot
